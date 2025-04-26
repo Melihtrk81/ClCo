@@ -1,0 +1,15 @@
+fetch('https://cicozitate.azurewebsites.net/api/getRandomQuote')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('quotes-container');
+    container.innerHTML = `
+      <div class="quote">
+        <p>"${data.Text}"</p>
+        <div class="author">– ${data.Author}</div>
+      </div>
+    `;
+  })
+  .catch(error => {
+    console.error('Fehler beim Abrufen des Zitats:', error);
+    document.getElementById('quotes-container').innerHTML = '<p>Fehler beim Laden der Zitate.</p>';
+  });
